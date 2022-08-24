@@ -22,7 +22,7 @@ namespace OrderingSystem.Dao
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        public List<Telephone> QueryTelephone(int customerId)
+        public List<Telephone> QueryTelephones(int customerId)
         {
             //拼装sql，执行sql获得数据
             string sql = $"select * from telephone where cuid={customerId}";
@@ -39,6 +39,18 @@ namespace OrderingSystem.Dao
         {
             //拼装sql，执行sql获得数据
             string sql = $"select * from telephone where telephone='{telephone}'";
+            return Query<Telephone>(sql, GetOneTelephone);
+        }
+
+        /// <summary>
+        /// 根据 telephoneId 查找 telephone
+        /// </summary>
+        /// <param name="telephone"></param>
+        /// <returns></returns>
+        public Telephone QueryTelephoneByTelephoneId(int telephoneId)
+        {
+            //拼装sql，执行sql获得数据
+            string sql = $"select * from telephone where id='{telephoneId}'";
             return Query<Telephone>(sql, GetOneTelephone);
         }
 

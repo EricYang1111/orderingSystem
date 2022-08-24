@@ -18,11 +18,11 @@ namespace OrderingSystem.Dao
         }
 
         /// <summary>
-        /// 查找 address
+        /// 查找 addresses
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        public List<Address> QueryAddress(int customerId)
+        public List<Address> QueryAddresses(int customerId)
         {
             //拼装sql，执行sql获得数据
             string sql = $"select * from address where cuid={customerId}";
@@ -38,6 +38,18 @@ namespace OrderingSystem.Dao
         {
             //拼装sql，执行sql获得数据
             string sql = $"select * from address where address='{address}';";
+            return Query<Address>(sql, GetOneAddress);
+        }
+
+        /// <summary>
+        /// 使用 addressId 查找 address
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public Address QueryAddressByAddressId(int addressId)
+        {
+            //拼装sql，执行sql获得数据
+            string sql = $"select * from address where id='{addressId}';";
             return Query<Address>(sql, GetOneAddress);
         }
 

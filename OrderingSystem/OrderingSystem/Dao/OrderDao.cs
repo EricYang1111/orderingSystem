@@ -48,6 +48,24 @@ namespace OrderingSystem.Dao
             return orderInfos;
         }
 
+        /// <summary>
+        /// 查找某个 order
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public OrderInfo QureyOrder(int orderId)
+        {
+            //拼装sql，执行sql获得数据
+            string sql = $"select * from orderinfo where id={orderId}";
+            OrderInfo orderInfo = Query<OrderInfo>(sql, GetOrderInfo);
+            return orderInfo;
+        }
+
+        /// <summary>
+        /// 删除 order
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
         public bool DeleteOrder(int orderId)
         {
             //先删除 orderitem
@@ -142,6 +160,29 @@ namespace OrderingSystem.Dao
                 orderInfos.Add(orderInfo);
             }
             return orderInfos;
+        }
+
+        /// <summary>
+        /// 作为回调函数，根据获得的 SqlDataReader 对象 构造 OrderInfo 对象
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        private OrderInfo GetOrderInfo(SqlDataReader reader)
+        {
+            //解析数据
+            OrderInfo orderInfo = null;
+            while (reader != null && reader.Read())
+            {
+                orderInfo = new OrderInfo();
+                orderInfo.totalPrice = Convert.ToDouble(reader["totalprice"]);
+                orderInfo.id = Convert.ToInt32(reader["id"]);
+                orderInfo.cuid = Convert.ToInt32(reader["cuid"]);
+                orderInfo.date = Convert.ToDateTime(reader["date"]);
+                orderInfo.status = Convert.ToInt32(reader["status"]);
+                orderInfo.addressId = Convert.ToInt32(reader["addressid"]);
+                orderInfo.telephoneId = Convert.ToInt32(reader["telephoneid"]);
+            }
+            return orderInfo;
         }
     }
 }

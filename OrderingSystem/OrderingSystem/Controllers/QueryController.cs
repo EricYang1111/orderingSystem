@@ -58,31 +58,59 @@ namespace OrderingSystem.Controllers
             return Content(JsonConvert.SerializeObject((menus == null || menus.Count == 0 )? (new List<Menu>()) : menus, Formatting.Indented));
         }
 
-        [HttpGet("address/{customerId}")]
-        public ActionResult QueryAddress(int customerId)
+        [HttpGet("addresses/{customerId}")]
+        public ActionResult QueryAddresses(int customerId)
         {
             AddressDao addressDao = new AddressDao();
-            List<Address> addresses = addressDao.QueryAddress(customerId);
+            List<Address> addresses = addressDao.QueryAddresses(customerId);
 
             return Content(JsonConvert.SerializeObject((addresses == null || addresses.Count == 0) ? (new List<Address>()) : addresses, Formatting.Indented));
         }
 
-        [HttpGet("telephone/{customerId}")]
-        public ActionResult QueryTelephone(int customerId)
+        [HttpGet("address/{addressId}")]
+        public ActionResult QueryAddress(int addressId)
+        {
+            AddressDao addressDao = new AddressDao();
+            Address address = addressDao.QueryAddressByAddressId(addressId);
+
+            return Content(JsonConvert.SerializeObject(address == null ? (new { }) : address, Formatting.Indented));
+        }
+
+        [HttpGet("telephones/{customerId}")]
+        public ActionResult QueryTelephones(int customerId)
         {
             TelephoneDao telephoneDao = new TelephoneDao();
-            List<Telephone> telephones = telephoneDao.QueryTelephone(customerId);
+            List<Telephone> telephones = telephoneDao.QueryTelephones(customerId);
 
             return Content(JsonConvert.SerializeObject((telephones == null || telephones.Count == 0) ? (new List<Address>()) : telephones, Formatting.Indented));
         }
 
-        [HttpGet("order/{customerId}")]
-        public ActionResult QueryOrder(int customerId)
+        [HttpGet("telephone/{telephoneId}")]
+        public ActionResult QueryTelephone(int telephoneId)
+        {
+            TelephoneDao telephoneDao = new TelephoneDao();
+            Telephone telephone = telephoneDao.QueryTelephoneByTelephoneId(telephoneId);
+
+            return Content(JsonConvert.SerializeObject(telephone == null ? (new { }) : telephone, Formatting.Indented));
+        }
+
+        [HttpGet("orders/{customerId}")]
+        public ActionResult QueryOrders(int customerId)
         {
             OrderDao orderDao = new OrderDao();
             List<OrderInfo> orderInfos = orderDao.QureyOrders(customerId);
 
             return Content(JsonConvert.SerializeObject((orderInfos == null || orderInfos.Count == 0) ? (new List<Address>()) : orderInfos, Formatting.Indented));
+
+        }
+
+        [HttpGet("order/{orderId}")]
+        public ActionResult QueryOrder(int orderId)
+        {
+            OrderDao orderDao = new OrderDao();
+            OrderInfo orderInfo = orderDao.QureyOrder(orderId);
+
+            return Content(JsonConvert.SerializeObject(orderInfo == null ? (new { }) : orderInfo, Formatting.Indented));
 
         }
     }

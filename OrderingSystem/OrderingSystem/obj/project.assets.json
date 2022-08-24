@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\eyang\\c#练习\\OrderingSystem\\OrderingSystem\\OrderingSystem.csproj",
+      "projectUniqueName": "C:\\Users\\eyang\\c#练习\\WebApi\\OrderingSystem\\OrderingSystem\\OrderingSystem.csproj",
       "projectName": "OrderingSystem",
-      "projectPath": "C:\\Users\\eyang\\c#练习\\OrderingSystem\\OrderingSystem\\OrderingSystem.csproj",
+      "projectPath": "C:\\Users\\eyang\\c#练习\\WebApi\\OrderingSystem\\OrderingSystem\\OrderingSystem.csproj",
       "packagesPath": "C:\\Users\\eyang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\eyang\\c#练习\\OrderingSystem\\OrderingSystem\\obj\\",
+      "outputPath": "C:\\Users\\eyang\\c#练习\\WebApi\\OrderingSystem\\OrderingSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

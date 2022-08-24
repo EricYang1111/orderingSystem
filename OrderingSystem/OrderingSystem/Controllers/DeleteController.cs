@@ -14,9 +14,9 @@ namespace OrderingSystem.Controllers
 
             if (success)
             {
-                return Ok("create success");
+                return Ok("delete success");
             }
-            return Ok("create fail");
+            return Ok("delete fail");
         }
 
         [HttpGet("order/{orderId}")]
@@ -27,9 +27,9 @@ namespace OrderingSystem.Controllers
 
             if (success)
             {
-                return Ok("create success");
+                return Ok("delete success");
             }
-            return Ok("create fail");
+            return Ok("delete fail");
         }
     }
 }
