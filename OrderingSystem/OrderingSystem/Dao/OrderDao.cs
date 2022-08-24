@@ -78,6 +78,29 @@ namespace OrderingSystem.Dao
         }
 
         /// <summary>
+        /// 更改 order 状态 status
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public bool UpdateStatus(int orderId)
+        {
+            //先获取 order 的 status 属性
+            // 0:创建了订单，还没开始做
+            // 1:正在做
+            // 2:已上菜
+            // 3:已完成订单
+            int status = new OrderDao().QureyOrder(orderId).status;
+            if(status >= 3)
+            {
+                return false;
+            }
+
+            //更改数据
+            string sql = $"update orderinfo set status={status+1} where id={orderId};";
+            return CreateOrDeleteOrUpdate(sql);
+        }
+
+        /// <summary>
         /// FullOrder对象 转 OrderInfo对象
         /// </summary>
         /// <param name="fullOrder"></param>

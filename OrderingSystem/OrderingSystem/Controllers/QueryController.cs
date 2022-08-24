@@ -113,5 +113,15 @@ namespace OrderingSystem.Controllers
             return Content(JsonConvert.SerializeObject(orderInfo == null ? (new { }) : orderInfo, Formatting.Indented));
 
         }
+
+        [HttpGet("orderItems/{orderId}")]
+        public ActionResult QueryOrderItem(int orderId)
+        {
+            OrderItemDao orderItemDao = new OrderItemDao();
+            List<OrderItem> orderItems = orderItemDao.QueryOrderItems(orderId);
+
+            return Content(JsonConvert.SerializeObject((orderItems == null || orderItems.Count == 0) ? (new List<OrderItem>()) : orderItems, Formatting.Indented));
+
+        }
     }
 }
