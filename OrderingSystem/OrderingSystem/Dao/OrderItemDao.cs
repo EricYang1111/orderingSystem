@@ -60,6 +60,7 @@ namespace OrderingSystem.Dao
             {
                 OrderItem orderItem = new OrderItem();
                 orderItem.id = Convert.ToInt32(reader["id"]);
+                orderItem.name = new MenuDao().QueryMenuById(orderItem.id).name;
                 orderItem.orderId = Convert.ToInt32(reader["orderid"]);
                 orderItem.menuId = Convert.ToInt32(reader["menuid"]);
                 orderItem.quantity = Convert.ToInt32(reader["quantity"]);
