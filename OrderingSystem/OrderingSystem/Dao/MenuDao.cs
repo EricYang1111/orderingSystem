@@ -68,7 +68,7 @@ namespace OrderingSystem.Dao
             {
                 menu = new Menu();
                 menu.name = Convert.ToString(reader["name"]);
-                menu.id = Convert.ToInt32(reader["id"]);
+                menu.menuId = Convert.ToInt32(reader["id"]);
                 menu.price = Convert.ToDouble(reader["price"]);
             }
             return menu;
@@ -87,7 +87,7 @@ namespace OrderingSystem.Dao
             {
                 Menu menu = new Menu();
                 menu.name = Convert.ToString(reader["name"]);
-                menu.id = Convert.ToInt32(reader["id"]);
+                menu.menuId = Convert.ToInt32(reader["id"]);
                 menu.price = Convert.ToDouble(reader["price"]);
                 menus.Add(menu);
             }
