@@ -53,12 +53,13 @@ namespace OrderingSystem.Dao
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
-        public OrderInfo QureyOrder(int orderId)
+        public OrderToClient QureyOrder(int orderId)
         {
             //拼装sql，执行sql获得数据
             string sql = $"select * from orderinfo where id={orderId}";
             OrderInfo orderInfo = Query<OrderInfo>(sql, GetOrderInfo);
-            return orderInfo;
+
+            return orderInfo.ToOrderToClient();
         }
 
         /// <summary>
