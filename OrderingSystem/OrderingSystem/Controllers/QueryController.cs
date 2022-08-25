@@ -98,9 +98,9 @@ namespace OrderingSystem.Controllers
         public ActionResult QueryOrders(int customerId)
         {
             OrderDao orderDao = new OrderDao();
-            List<OrderInfo> orderInfos = orderDao.QureyOrders(customerId);
+            List<OrderToClient> orderToClients = orderDao.QureyOrders(customerId);
 
-            return Content(JsonConvert.SerializeObject((orderInfos == null || orderInfos.Count == 0) ? (new List<Address>()) : orderInfos, Formatting.Indented));
+            return Content(JsonConvert.SerializeObject((orderToClients == null || orderToClients.Count == 0) ? (new List<OrderToClient>()) : orderToClients, Formatting.Indented));
 
         }
 

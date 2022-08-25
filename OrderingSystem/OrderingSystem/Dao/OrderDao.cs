@@ -40,12 +40,12 @@ namespace OrderingSystem.Dao
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        public List<OrderInfo> QureyOrders(int customerId)
+        public List<OrderToClient> QureyOrders(int customerId)
         {
             //拼装sql，执行sql获得数据
             string sql = $"select * from orderinfo where cuid={customerId}";
-            List<OrderInfo> orderInfos = Query<List<OrderInfo>>(sql, GetOrderInfos);
-            return orderInfos;
+            List<OrderToClient> orderToClients = Query<List<OrderToClient>>(sql, GetOrderInfos);
+            return orderToClients;
         }
 
         /// <summary>
@@ -166,10 +166,10 @@ namespace OrderingSystem.Dao
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        private List<OrderInfo> GetOrderInfos(SqlDataReader reader)
+        private List<OrderToClient> GetOrderInfos(SqlDataReader reader)
         {
             //解析数据
-            List<OrderInfo> orderInfos = new List<OrderInfo>();
+            List<OrderToClient> orderToClients = new List<OrderToClient>();
             while (reader != null && reader.Read())
             {
                 OrderInfo orderInfo = new OrderInfo();
@@ -181,9 +181,9 @@ namespace OrderingSystem.Dao
                 orderInfo.addressId = Convert.ToInt32(reader["addressid"]);
                 orderInfo.telephoneId = Convert.ToInt32(reader["telephoneid"]);
 
-                orderInfos.Add(orderInfo);
+                orderToClients.Add(orderInfo.ToOrderToClient());
             }
-            return orderInfos;
+            return orderToClients;
         }
 
         /// <summary>
