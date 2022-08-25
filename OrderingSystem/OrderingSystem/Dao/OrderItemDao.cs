@@ -41,6 +41,12 @@ namespace OrderingSystem.Dao
         }
 
 
+        public bool DeleteItems(int orderId)
+        {
+            string sql = $"delete from orderitem where orderid={orderId};";
+            return CreateOrDeleteOrUpdate(sql);
+        }
+
         /// <summary>
         /// 回调函数使用，用来构建从数据库获得的数据对象
         /// </summary>

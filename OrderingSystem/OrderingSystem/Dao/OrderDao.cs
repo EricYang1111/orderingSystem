@@ -69,12 +69,12 @@ namespace OrderingSystem.Dao
         public bool DeleteOrder(int orderId)
         {
             //先删除 orderitem
-            string sql1 = $"delete from orderitem where orderid={orderId};";
-            CreateOrDeleteOrUpdate(sql1);
+            OrderItemDao orderItemDao = new OrderItemDao();
+            orderItemDao.DeleteItems(orderId);
 
             //再删除 orderinfo
-            string sql2 = $"delete from orderinfo where id={orderId};";
-            return CreateOrDeleteOrUpdate(sql2);
+            string sql = $"delete from orderinfo where id={orderId};";
+            return CreateOrDeleteOrUpdate(sql);
         }
 
         /// <summary>
