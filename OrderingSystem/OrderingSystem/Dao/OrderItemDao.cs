@@ -40,7 +40,11 @@ namespace OrderingSystem.Dao
             return orderItems;
         }
 
-
+        /// <summary>
+        /// 删除订单的菜品 
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
         public bool DeleteItems(int orderId)
         {
             string sql = $"delete from orderitem where orderid={orderId};";

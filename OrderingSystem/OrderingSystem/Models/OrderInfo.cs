@@ -12,6 +12,10 @@ namespace OrderingSystem.Models
         public int addressId = 0;
         public int telephoneId = 0;
 
+        /// <summary>
+        /// 提取 orderInfo 的数据, 生成给客户端的数据, 区别在于:给客户端的数据的 address 和 telephone 数据是字符串
+        /// </summary>
+        /// <returns></returns>
         public OrderToClient ToOrderToClient()
         {
             OrderToClient orderToClient = new OrderToClient();
