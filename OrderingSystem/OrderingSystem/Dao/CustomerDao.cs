@@ -31,6 +31,14 @@ namespace OrderingSystem.Dao
             return customer;
         }
 
+        public List<Customer> QueryAllCustomer()
+        {
+            //拼装sql，执行sql获得数据
+            string sql = $"select * from customer";
+            List<Customer> customers = Query<List<Customer>>(sql, GetAllCustomer);
+            return customers;
+        }
+
 
         /// <summary>
         /// 作为回调函数，根据获得的 SqlDataReader 对象 构造 Customer 对象
@@ -50,6 +58,27 @@ namespace OrderingSystem.Dao
                 customer.password = Convert.ToString(reader["password"]);
             }
             return customer;
+        }
+
+        /// <summary>
+        /// 获取 所有 customer
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        private List<Customer> GetAllCustomer(SqlDataReader reader)
+        {
+            //解析数据
+            List<Customer> customers = new List<Customer>();
+            if (reader != null && reader.Read())
+            {
+                Customer customer = new Customer();
+                customer.name = Convert.ToString(reader["name"]);
+                customer.id = Convert.ToInt32(reader["id"]);
+                customer.status = Convert.ToBoolean(reader["status"]);
+                customer.password = Convert.ToString(reader["password"]);
+                customers.Add(customer);
+            }
+            return customers;
         }
 
         /// <summary>

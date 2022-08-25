@@ -29,6 +29,16 @@ namespace OrderingSystem.Controllers
             //return Json(customer);
         }
 
+        [HttpGet("allCustomer")]
+        public ActionResult QueryAllCustomer()
+        {
+            CustomerDao customerDao = new CustomerDao();
+            List<Customer> customers = customerDao.QueryAllCustomer();
+
+            return Content(JsonConvert.SerializeObject((customers == null || customers.Count == 0) ? (new List<Customer>()) : customers, Formatting.Indented));
+
+        }
+
         [HttpGet("menuByName/{menuName}")]
         public ActionResult QueryMenuByName(string menuName)
         {
@@ -102,6 +112,15 @@ namespace OrderingSystem.Controllers
 
             return Content(JsonConvert.SerializeObject((orderToClients == null || orderToClients.Count == 0) ? (new List<OrderToClient>()) : orderToClients, Formatting.Indented));
 
+        }
+
+        [HttpGet("allOrder")]
+        public ActionResult QueryAllOrder()
+        {
+            OrderDao orderDao = new OrderDao();
+            List<OrderToClient> orderToClients = orderDao.QueryAllOrder();
+
+            return Content(JsonConvert.SerializeObject((orderToClients == null || orderToClients.Count == 0) ? (new List<OrderToClient>()) : orderToClients, Formatting.Indented));
         }
 
         [HttpGet("order/{orderId}")]

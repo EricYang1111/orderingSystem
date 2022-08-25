@@ -49,6 +49,18 @@ namespace OrderingSystem.Dao
         }
 
         /// <summary>
+        /// 获得所有 order
+        /// </summary>
+        /// <returns></returns>
+        public List<OrderToClient> QueryAllOrder()
+        {
+            //拼装sql，执行sql获得数据
+            string sql = $"select * from orderinfo";
+            List<OrderToClient> orderToClients = Query<List<OrderToClient>>(sql, GetOrderInfos);
+            return orderToClients;
+        }
+
+        /// <summary>
         /// 查找某个 order
         /// </summary>
         /// <param name="orderId"></param>
