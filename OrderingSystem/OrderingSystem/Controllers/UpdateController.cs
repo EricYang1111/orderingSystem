@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using OrderingSystem.Dao;
 
 namespace OrderingSystem.Controllers
@@ -12,11 +13,7 @@ namespace OrderingSystem.Controllers
             OrderDao orderDao = new OrderDao();
             bool success = orderDao.UpdateStatus(orderId);
 
-            if (success)
-            {
-                return Ok("update success");
-            }
-            return Ok("update fail");
+            return Content(JsonConvert.SerializeObject(new { result = success }, Formatting.Indented));
         }
     }
 }

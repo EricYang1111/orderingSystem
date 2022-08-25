@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using OrderingSystem.Dao;
 
 namespace OrderingSystem.Controllers
@@ -12,11 +13,8 @@ namespace OrderingSystem.Controllers
             MenuDao menuDao = new MenuDao();
             bool success = menuDao.DeleteMenu(menuId);
 
-            if (success)
-            {
-                return Ok("delete success");
-            }
-            return Ok("delete fail");
+            return Content(JsonConvert.SerializeObject(new { result = success }, Formatting.Indented));
+
         }
 
         [HttpGet("order/{orderId}")]
@@ -25,11 +23,7 @@ namespace OrderingSystem.Controllers
             OrderDao orderDao = new OrderDao();
             bool success = orderDao.DeleteOrder(orderId);
 
-            if (success)
-            {
-                return Ok("delete success");
-            }
-            return Ok("delete fail");
+            return Content(JsonConvert.SerializeObject(new { result = success }, Formatting.Indented));
         }
     }
 }

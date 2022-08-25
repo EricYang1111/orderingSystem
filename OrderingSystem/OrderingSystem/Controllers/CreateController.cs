@@ -18,11 +18,8 @@ namespace OrderingSystem.Controllers
             CustomerDao customerDao = new CustomerDao();
             bool success = customerDao.CreateCustomer(customer);
 
-            if (success)
-            {
-                return Ok("create success");
-            }
-            return Ok("create fail");
+            return Content(JsonConvert.SerializeObject(new {result = success} , Formatting.Indented));
+
         }
 
         [HttpPost("menu")]
@@ -34,11 +31,8 @@ namespace OrderingSystem.Controllers
             MenuDao menuDao = new MenuDao();
             bool success = menuDao.CreateMenu(menu);
 
-            if (success)
-            {
-                return Ok("create success");
-            }
-            return Ok("create fail");
+            return Content(JsonConvert.SerializeObject(new { result = success }, Formatting.Indented));
+
         }
 
         [HttpPost("address")]
@@ -50,11 +44,8 @@ namespace OrderingSystem.Controllers
             AddressDao addressDao = new AddressDao();
             bool success = addressDao.CreateAddress(address);
 
-            if (success)
-            {
-                return Ok("create success");
-            }
-            return Ok("create fail");
+            return Content(JsonConvert.SerializeObject(new { result = success }, Formatting.Indented));
+
         }
 
         [HttpPost("telephone")]
@@ -66,11 +57,8 @@ namespace OrderingSystem.Controllers
             TelephoneDao telephoneDao = new TelephoneDao();
             bool success = telephoneDao.CreateTelephone(telephone);
 
-            if (success)
-            {
-                return Ok("create success");
-            }
-            return Ok("create fail");
+            return Content(JsonConvert.SerializeObject(new { result = success }, Formatting.Indented));
+
         }
 
         [HttpPost("order")]
@@ -82,11 +70,8 @@ namespace OrderingSystem.Controllers
             OrderDao orderDao = new OrderDao();
             bool success = orderDao.CreateOrder(fullOrder);
 
-            if (success)
-            {
-                return Ok("create success");
-            }
-            return Ok("create fail");
+            return Content(JsonConvert.SerializeObject(new { result = success }, Formatting.Indented));
+
         }
     }
 }
